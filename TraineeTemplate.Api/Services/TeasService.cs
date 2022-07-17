@@ -8,7 +8,7 @@ using TraineeTemplate.Api.Data.Entities;
 
 namespace TraineeTemplate.Api.Services;
 
-[Inject]
+[Injectable]
 public class TeasService
 {
 	private readonly IDatabaseContext _database;
