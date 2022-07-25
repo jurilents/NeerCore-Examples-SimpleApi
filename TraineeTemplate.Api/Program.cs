@@ -4,6 +4,7 @@ using NeerCore.Api.Extensions;
 using NeerCore.Api.Extensions.Swagger;
 using NeerCore.Data.EntityFramework;
 using NeerCore.Logging;
+using NeerCore.Logging.Extensions;
 using NeerCore.Mapping.Extensions;
 using NLog;
 using TraineeTemplate.Api.Data;
@@ -34,6 +35,7 @@ finally
 
 static void ConfigureBuilder(WebApplicationBuilder builder)
 {
+    builder.Logging.AddNLogAsDefault();
     builder.Services.AddDatabase<SqliteDbContext>(db =>
         db.UseSqlite(builder.Configuration.GetConnectionString("Sqlite")));
 
