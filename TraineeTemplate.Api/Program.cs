@@ -3,12 +3,12 @@ using NeerCore.Api;
 using NeerCore.Api.Extensions;
 using NeerCore.Api.Extensions.Swagger;
 using NeerCore.Data.EntityFramework;
+using NeerCore.Logging;
 using NeerCore.Mapping.Extensions;
 using NLog;
-using TraineeTemplate.Api;
 using TraineeTemplate.Api.Data;
 
-var logger = LoggerInstaller.InitDefault();
+var logger = LoggerInstaller.InitFromCurrentEnvironment();
 
 try
 {
@@ -37,8 +37,9 @@ static void ConfigureBuilder(WebApplicationBuilder builder)
     builder.Services.AddDatabase<SqliteDbContext>(db =>
         db.UseSqlite(builder.Configuration.GetConnectionString("Sqlite")));
 
-    builder.AddNeerApi();
-    builder.Services.RegisterMapper<MapperRegister>();
+    builder.Services.AddNeerApiServices();
+    builder.Services.AddNeerControllers();
+    builder.Services.RegisterMappers();
 }
 
 static void ConfigureWebApp(WebApplication app)
