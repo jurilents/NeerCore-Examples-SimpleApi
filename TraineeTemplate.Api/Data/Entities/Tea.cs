@@ -6,7 +6,7 @@ using Sieve.Attributes;
 namespace TraineeTemplate.Api.Data.Entities;
 
 [Table("Teas")]
-public class Tea : IDatedEntity<Guid>
+public class Tea : IDateableEntity<Guid>
 {
     [Sieve(CanFilter = true, CanSort = true)]
     [Key]

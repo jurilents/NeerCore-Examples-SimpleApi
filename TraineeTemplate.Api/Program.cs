@@ -2,7 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using NeerCore.Api;
 using NeerCore.Api.Extensions;
 using NeerCore.Api.Extensions.Swagger;
-using NeerCore.Data.EntityFramework;
+using NeerCore.Data.EntityFramework.Extensions;
+using NeerCore.DependencyInjection.Extensions;
 using NeerCore.Logging;
 using NeerCore.Logging.Extensions;
 using NeerCore.Mapping.Extensions;
@@ -35,13 +36,14 @@ finally
 
 static void ConfigureBuilder(WebApplicationBuilder builder)
 {
-    builder.Logging.AddNLogAsDefault();
+    builder.Logging.ConfigureNLogAsDefault();
     builder.Services.AddDatabase<SqliteDbContext>(db =>
         db.UseSqlite(builder.Configuration.GetConnectionString("Sqlite")));
 
+    builder.Services.RegisterAllMappers();
+    builder.Services.ConfigureAllOptions();
     builder.Services.AddNeerApiServices();
     builder.Services.AddNeerControllers();
-    builder.Services.RegisterMappers();
 }
 
 static void ConfigureWebApp(WebApplication app)
