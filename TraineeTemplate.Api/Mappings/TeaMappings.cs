@@ -1,9 +1,9 @@
 ﻿using Mapster;
 using TraineeTemplate.Api.Data.Entities;
 
-namespace TraineeTemplate.Api;
+namespace TraineeTemplate.Api.Mappings;
 
-public class MapperRegister : IRegister
+public class TeaMappings : IRegister
 {
     private const decimal BTCRate = 0.000034m;
 
