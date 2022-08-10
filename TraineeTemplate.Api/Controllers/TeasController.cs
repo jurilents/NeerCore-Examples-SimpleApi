@@ -4,12 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using NeerCore.Api.Controllers;
 using NeerCore.Api.Extensions;
 using NeerCore.Mapping.Extensions;
-using TraineeTemplate.Api.Dto;
 using TraineeTemplate.Api.Dto.Teas;
 using TraineeTemplate.Api.Services;
 
 namespace TraineeTemplate.Api.Controllers;
- 
+
 public class TeasController : ApiController
 {
     private readonly TeasService _service;
@@ -17,7 +16,7 @@ public class TeasController : ApiController
 
 
     [HttpGet("{id:guid}")]
-    public async Task<Tea> Get([FromRoute] Guid id)
+    public async Task<Tea> Get(Guid id)
     {
         var entity = await _service.GetByIdAsync(id);
         return entity.Adapt<Tea>();
@@ -32,7 +31,7 @@ public class TeasController : ApiController
     }
 
     [HttpPost]
-    public async Task<ActionResult<Tea>> Post([FromBody] TeaCreate dto)
+    public async Task<ActionResult<Tea>> Post(TeaCreate dto)
     {
         var entity = dto.Adapt<Data.Entities.Tea>();
         await _service.CreateAsync(entity);
@@ -40,7 +39,7 @@ public class TeasController : ApiController
     }
 
     [HttpPut("{id:guid}")]
-    public async Task<NoContentResult> Put([FromRoute] Guid id, [FromBody] TeaUpdate dto)
+    public async Task<NoContentResult> Put(Guid id, [FromBody] TeaUpdate dto)
     {
         var entity = (dto with { Id = id }).Adapt<Data.Entities.Tea>();
         await _service.UpdateAsync(entity);
@@ -48,16 +47,18 @@ public class TeasController : ApiController
     }
 
     [HttpPatch("{id:guid}")]
-    public async Task<NoContentResult> Patch([FromRoute] Guid id, [FromBody] JsonPatchDocument patch)
+    public async Task<NoContentResult> Patch(Guid id, JsonPatchDocument<TeaUpdate> patch)
     {
         var entity = await _service.GetByIdAsync(id);
-        patch.ApplyTo(entity);
+        var dto = entity.Adapt<TeaUpdate>();
+        patch.ApplyTo(dto);
+        dto.Adapt(entity);
         await _service.UpdateAsync(entity);
         return NoContent();
     }
 
     [HttpDelete("{id:guid}")]
-    public async Task<NoContentResult> Delete([FromRoute] Guid id)
+    public async Task<NoContentResult> Delete(Guid id)
     {
         await _service.DeleteAsync(id);
         return NoContent();
