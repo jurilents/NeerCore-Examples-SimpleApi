@@ -9,6 +9,9 @@ using TraineeTemplate.Api.Services;
 
 namespace TraineeTemplate.Api.Controllers;
 
+/// <summary>
+///   Teas CRUD
+/// </summary>
 public class TeasController : ApiController
 {
     private readonly TeasService _service;
