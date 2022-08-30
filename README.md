@@ -3,9 +3,11 @@
 ## Getting started
 
 Execute the following command in your terminal to run the app: 
-dotnet run --project SeniorTemplate.Api
+`dotnet run --project TraineeTemplate.Api`
 
-Open Swagger Docs: https://localhost:7300/swagger/index.html
+Open Swagger Docs: https://localhost:7100/swagger/index.html
+
+Or alternative ReDoc: https://localhost:7100/docs-v1/index.html
 
 
 ## Additional information
