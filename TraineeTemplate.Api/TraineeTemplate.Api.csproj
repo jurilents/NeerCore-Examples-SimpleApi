@@ -17,11 +17,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.8" />
-        <PackageReference Include="NeerCore.Api" Version="1.5.3" />
-        <PackageReference Include="NeerCore.Data.EntityFramework" Version="1.5.3" />
-        <PackageReference Include="NeerCore.Logging.NLog" Version="1.5.3" />
-        <PackageReference Include="NeerCore.Mapping.Mapster" Version="1.5.3" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.10" />
+        <PackageReference Include="NeerCore.Api" Version="1.6.1" />
+        <PackageReference Include="NeerCore.Data.EntityFramework" Version="1.6.1" />
+        <PackageReference Include="NeerCore.Logging.NLog" Version="1.6.1" />
+        <PackageReference Include="NeerCore.Mapping.Mapster" Version="1.6.1" />
     </ItemGroup>
 
     <ItemGroup>
